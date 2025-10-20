@@ -1,11 +1,12 @@
 // Playback service for react-native-track-player
 // This file handles background playback events
 import TrackPlayer, { Event } from 'react-native-track-player';
+import { handlePlaybackError } from './audioService';
 
 export default async function playbackService() {
   // This service needs to be registered in order for the TrackPlayer to work
   // when the app is in the background
-  
+
   TrackPlayer.addEventListener(Event.RemotePause, () => {
     TrackPlayer.pause();
   });
@@ -33,6 +34,7 @@ export default async function playbackService() {
 
   // Handle playback errors
   TrackPlayer.addEventListener(Event.PlaybackError, (event) => {
+    handlePlaybackError(event);
     console.error('Playback error:', event);
   });
 }

@@ -1,12 +1,20 @@
 // useMusicPlayer hook - Integrates react-native-track-player with Zustand
 import { useCallback, useEffect, useState } from 'react';
-import TrackPlayer, {
+import {
   Event,
   State,
   usePlaybackState,
   useProgress,
   useTrackPlayerEvents,
 } from 'react-native-track-player';
+import {
+  addTrack,
+  handlePlaybackError,
+  pauseTrack,
+  playTrack,
+  resetPlayer,
+  seekToPosition,
+} from '../services/audioService';
 import {
   selectCurrentTrack,
   selectIsPlaying,
@@ -93,6 +101,7 @@ export const useMusicPlayer = (): UseMusicPlayerReturn => {
   // Handle track player events
   useTrackPlayerEvents([Event.PlaybackError], (event) => {
     if (event.type === Event.PlaybackError) {
+      handlePlaybackError(event);
       setError(`Playback error: ${event.message || 'Unknown error'}`);
       setLoading(false);
     }
@@ -105,8 +114,8 @@ export const useMusicPlayer = (): UseMusicPlayerReturn => {
         setError(null);
 
         // Reset and add new track
-        await TrackPlayer.reset();
-        await TrackPlayer.add({
+        await resetPlayer();
+        await addTrack({
           id: track.id,
           url: track.audioUrl,
           title: track.title,
@@ -115,7 +124,7 @@ export const useMusicPlayer = (): UseMusicPlayerReturn => {
         });
 
         // Start playback
-        await TrackPlayer.play();
+        await playTrack();
         setCurrentTrack(track);
       } catch (err) {
         const errorMessage =
@@ -131,7 +140,7 @@ export const useMusicPlayer = (): UseMusicPlayerReturn => {
 
   const pause = useCallback(async () => {
     try {
-      await TrackPlayer.pause();
+      await pauseTrack();
     } catch (err) {
       console.error('Pause error:', err);
     }
@@ -139,7 +148,7 @@ export const useMusicPlayer = (): UseMusicPlayerReturn => {
 
   const seekTo = useCallback(async (seconds: number) => {
     try {
-      await TrackPlayer.seekTo(seconds);
+      await seekToPosition(seconds);
     } catch (err) {
       console.error('Seek error:', err);
     }
@@ -147,7 +156,7 @@ export const useMusicPlayer = (): UseMusicPlayerReturn => {
 
   const resume = useCallback(async () => {
     try {
-      await TrackPlayer.play();
+      await playTrack();
     } catch (err) {
       console.error('Resume error:', err);
     }

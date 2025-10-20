@@ -11,6 +11,7 @@ import {
 import { GlassButton, GlassCard } from '../../components/ui/GlassCard';
 import { THEME } from '../../constants/theme';
 import { useMusicPlayer } from '../../hooks/useMusicPlayer';
+import { handlePlaybackError } from '../../services/audioService';
 
 export default function PlayerModal() {
   const progressWidth = useRef(0);
@@ -57,6 +58,7 @@ export default function PlayerModal() {
   };
 
   if (error) {
+    handlePlaybackError(error);
     Alert.alert('Playback Error', error);
   }
 
