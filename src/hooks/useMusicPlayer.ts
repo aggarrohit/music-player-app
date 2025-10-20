@@ -122,11 +122,12 @@ export const useMusicPlayer = (): UseMusicPlayerReturn => {
           artist: track.artist,
           duration: track.duration,
         });
-
+        console.log('Track added to player:', track.title);
         // Start playback
         await playTrack();
         setCurrentTrack(track);
       } catch (err) {
+        console.log('reaching the error');
         const errorMessage =
           err instanceof Error ? err.message : 'Playback failed';
         setError(errorMessage);

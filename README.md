@@ -1,22 +1,13 @@
-# MusicRewards Test App
+# MusicRewards App
 
-This is the recommended project structure for the Belong React Native assessment. Use this as your starting point!
+This is a react native expo app created using react native track player for playing music and rewarding users for completing the challenge.
 
-## 🚀 Setup Instructions
+## 🚀 Run Instructions
 
-**📖 See [../SETUP.md](../SETUP.md) for complete setup instructions**
-
-This test-app folder contains the complete starter code structure for your MusicRewards implementation. Don't run setup commands from here - follow the main setup guide above.
-
-**Quick Reference:**
-```bash
-# From the parent react-native/ folder:
-cp -r test-app ~/MusicRewards
-cd ~/MusicRewards
-npx create-expo-app . --template typescript
+git clone https://github.com/aggarrohit/music-player-app.git
 npm install
-npx expo start
-```
+npx expo prebuild --clean
+npx expo run:ios
 
 ## 📁 Project Structure
 
@@ -59,23 +50,8 @@ src/
 ## 🎵 Audio Files
 
 The assessment uses these pre-hosted tracks:
+
 - **Track 1:** Camo & Krooked - All Night (3:39, 150 points)
 - **Track 2:** Roni Size - New Forms (7:44, 300 points)
 
 URLs and sample data are in [`../assets/audio/README.md`](../assets/audio/README.md)
-
-## 🎯 Implementation Order
-
-1. **Set up basic navigation structure**
-2. **Create Zustand stores (musicStore.ts, userStore.ts)**
-3. **Build glass design components (GlassCard, GlassButton)**
-4. **Implement useMusicPlayer hook with TrackPlayer**
-5. **Create challenge list and player modal UI**
-6. **Add points counter and progress tracking**
-7. **Test on both platforms and add error handling**
-
-## 📖 Reference
-
-See the main [README.md](../README.md) for detailed technical requirements and evaluation criteria.
-
-Good luck! 🚀🎵
