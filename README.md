@@ -4,10 +4,11 @@ This is a react native expo app created using react native track player for play
 
 ## 🚀 Run Instructions
 
-git clone https://github.com/aggarrohit/music-player-app.git
-npm install
-npx expo prebuild --clean
-npx expo run:ios
+- git clone https://github.com/aggarrohit/music-player-app.git
+- cd music-rewards-app
+- npm install
+- npx expo prebuild --clean
+- npx expo run:ios
 
 ## 📁 Project Structure
 
@@ -54,4 +55,4 @@ The assessment uses these pre-hosted tracks:
 - **Track 1:** Camo & Krooked - All Night (3:39, 150 points)
 - **Track 2:** Roni Size - New Forms (7:44, 300 points)
 
-URLs and sample data are in [`../assets/audio/README.md`](../assets/audio/README.md)
+URLs and sample data are in [`./assets/audio/README.md`](./assets/audio/README.md)
